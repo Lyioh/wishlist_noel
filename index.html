@@ -89,13 +89,20 @@
             position: fixed;
             width: 80px;
             z-index: 1400;
-            animation: santaSmallFly 12s linear infinite;
+            animation: santaSmallDiagonal 12s linear infinite;
         }
 
-        @keyframes santaSmallFly {
-            0% { transform: translateX(-100px) translateY(0); }
-            50% { transform: translateX(60vw) translateY(-40px) rotate(10deg); }
-            100% { transform: translateX(110vw) translateY(0); }
+
+        @keyframes santaSmallDiagonal {
+            0% {
+                transform: translateX(-100px) translateY(100px) rotate(0deg);
+            }
+            50% {
+                transform: translateX(50vw) translateY(-25vh) rotate(10deg);
+            }
+            100% {
+                transform: translateX(110vw) translateY(-50vh) rotate(0deg);
+            }
         }
     </style>
 </head>
