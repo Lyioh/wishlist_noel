@@ -101,6 +101,7 @@
             pointer-events: none;
         }
 
+        
         @keyframes santaSmallDiagonal {
             0% {
                 transform: translateX(-150px) translateY(100vh) rotate(-10deg);
@@ -113,16 +114,43 @@
             }
         }
 
+        /* ---- GUIRLANDE SEPARATEUR ---- */
+        .separator-garland {
+            width: 100%;
+            text-align: center;
+            margin: 40px 0 50px 0;
+            line-height: 0; /* Important pour supprimer l'espace sous les images en ligne */
+            margin-bottom: 0; /* Supprimer toute marge en bas */
+            padding-bottom: 0;
+        }
+
+        .garland-img {
+            width: 60%;
+            max-width: 200px;
+            /*min-width: 250px;*/
+            filter: drop-shadow(0 0 8px #ffd700) drop-shadow(0 0 12px #ff8800);
+            animation: twinkle 2s infinite ease-in-out;
+            display: block;
+            margin: 0 auto; 
+        }
+
+        @keyframes twinkle {
+            0% { filter: drop-shadow(0 0 4px #ffd700) drop-shadow(0 0 8px #ff8800); }
+            50% { filter: drop-shadow(0 0 16px #ffd700) drop-shadow(0 0 22px #ff5500); }
+            100% { filter: drop-shadow(0 0 4px #ffd700) drop-shadow(0 0 8px #ff8800); }
+        }
+
+
     </style>
 </head>
 
 <body>
 
     <!-- ---- PETITS PÈRES NOËL ---- -->
-    <img src="images/santa_small.webp" class="santa-small" style="top: 80%; animation-delay: 0s;">
-    <img src="images/santa_small.webp" class="santa-small" style="top: 70%; animation-delay: 3s;">
-    <img src="images/santa_small.webp" class="santa-small" style="top: 60%; animation-delay: 5s;">
-    <img src="images/santa_small.webp" class="santa-small" style="top: 85%; animation-delay: 7s;">
+    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 0s;">
+    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 3s;">
+    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 5s;">
+    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 7s;">
 
     <!-- Neige -->
     <canvas class="snow" id="snowCanvas"></canvas>
@@ -139,10 +167,10 @@
 
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/cadeau_chloe_1.jpg" alt="Cadeau 1">
+                        <img src="images/barbie_bateau.webp" alt="Cadeau 1">
                         <div class="card-body">
-                            <h5 class="card-title">Nom du cadeau</h5>
-                            <p class="card-text"><strong>Prix :</strong> 25€</p>
+                            <h5 class="card-title">Bateau barbie</h5>
+                            <p class="card-text"><strong>Prix :</strong> 50 à 80€</p>
                         </div>
                     </div>
                 </div>
@@ -161,8 +189,8 @@
         </div>
 
         <!-- ---- SÉPARATEUR ---- -->
-        <div class="separator">
-            <span>❄️ ✨ ❄️</span>
+        <div class="separator-garland">
+            <img src="images/guirlande.png" alt="Guirlande lumineuse" class="garland-img">
         </div>
 
         <!-- ---- SECTION MARIE ---- -->
