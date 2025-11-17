@@ -96,19 +96,23 @@
             width: 160px;
             z-index: 1400;
             animation: santaSmallDiagonal 12s linear infinite;
+            top: 0; /* obligatoire pour éviter les déplacements relatifs */
+            left: 0;
+            pointer-events: none;
         }
 
         @keyframes santaSmallDiagonal {
             0% {
-                transform: translateX(-100px) translateY(100px);
+                transform: translateX(-150px) translateY(100vh) rotate(-10deg);
             }
             50% {
-                transform: translateX(50vw) translateY(-25vh) rotate(10deg);
+                transform: translateX(50vw) translateY(30vh) rotate(10deg);
             }
             100% {
-                transform: translateX(110vw) translateY(-50vh);
+                transform: translateX(110vw) translateY(-150px) rotate(0deg);
             }
         }
+
     </style>
 </head>
 
@@ -125,7 +129,7 @@
 
     <div class="container text-center">
 
-        <h1>🎄 Wishlist de Noël 🎁</h1>
+        <h1>🎄Listes de Noël 🎁</h1>
 
         <!-- ---- SECTION CHLOÉ ---- -->
         <div class="wishlist-section">
