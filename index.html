@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 Wishlist de Noël Lyioh 🎁</title>
+    
+    <style>
+        :root {
+            --color-primary: #a11e25; /* Rouge Noël */
+            --color-secondary: #006400; /* Vert Sapin */
+            --color-background: #f8f8f8; /* Blanc cassé */
+            --color-card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--color-background);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* En-tête (Titre principal centré) */
+        header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Sections des personnes */
+        .wishlist-section {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+        }
+
+        .wishlist-section h2 {
+            color: var(--color-secondary);
+            border-bottom: 3px solid var(--color-secondary);
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            font-size: 2em;
+        }
+
+        /* Conteneur des cartes (Disposition Flexbox) */
+        .gifts-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Style de la carte cadeau */
+        .gift-card {
+            background-color: var(--color-card-bg);
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 320px; 
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gift-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gift-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover; 
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 2px solid #eee;
+        }
+
+        .gift-card h3 {
+            color: var(--color-primary);
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .price {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        
+        .price span {
+            font-weight: bold;
+            color: var(--color-secondary);
+            font-size: 1.2em;
+        }
+
+        /* Séparateur entre les sections */
+        hr {
+            border: 0;
+            height: 3px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--color-primary), rgba(0, 0, 0, 0));
+            margin: 70px 10%;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 700px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .gift-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🎄 Notre Wishlist de Noël 🎁</h1>
+    </header>
+
+    <main>
+        <div class="note-avertissement">
+            <p><strong>Note :</strong> Les cadeaux affichés ici sont encore disponibles. Nous les retirons du site une fois réservés !</p>
+        </div>
+        
+        <section class="wishlist-section" id="chloe">
+            <h2>✨ Cadeaux souhaités par Chloé</h2>
+            <div class="gifts-container">
+                
+                <div class="gift-card">
+                    <img src="images/jouet1.jpg" alt="Livre sur la photographie argentique">
+                    <h3>Livre de Photographie</h3>
+                    <p class="price">Prix estimé : <span>45 €</span></p>
+                </div>
+
+                <div class="gift-card">
+                    <img src="images/chloe_cadeau2.jpg" alt="Kit de fabrication de bougies">
+                    <h3>Kit Bougies Parfumées DIY</h3>
+                    <p class="price">Prix estimé : <span>28 €</span></p>
+                </div>
+                
+                </div>
+        </section>
+
+        <hr> <section class="wishlist-section" id="marie">
+            <h2>💖 Cadeaux souhaités par Marie</h2>
+            <div class="gifts-container">
+                
+                <div class="gift-card">
+                    <img src="images/jouet2.jpg" alt="Sac à dos de randonnée pour la journée">
+                    <h3>Sac à dos de Randonnée</h3>
+                    <p class="price">Prix estimé : <span>79 €</span></p>
+                </div>
+
+                <div class="gift-card">
+                    <img src="images/marie_cadeau2.jpg" alt="Paire de Baskets de Course">
+                    <h3>Paire de Baskets de Course</h3>
+                    <p class="price">Prix estimé : <span>110 €</span></p>
+                </div>
+
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Joyeux Noël à tous ! Ce site affiche uniquement les souhaits qui n'ont pas encore été réservés.</p>
+    </footer>
+</body>
+</html>
