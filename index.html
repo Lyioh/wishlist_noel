@@ -13,6 +13,7 @@
             background: linear-gradient(#b30000, #4d0000);
             font-family: "Segoe UI", sans-serif;
             padding-bottom: 50px;
+            overflow-x: hidden;
         }
 
         h1 {
@@ -56,6 +57,7 @@
             opacity: 0.8;
         }
 
+        /* Canvas neige */
         .snow {
             position: fixed;
             top: 0;
@@ -65,12 +67,51 @@
             height: 100%;
             z-index: 2000;
         }
+
+        /* GRAND PÈRE NOËL SUR TRAINEAU */
+        .santa-big {
+            position: fixed;
+            top: 20%;
+            left: -400px;
+            width: 350px;
+            z-index: 1500;
+            animation: santaBigFly 18s linear infinite;
+        }
+
+        @keyframes santaBigFly {
+            0% { left: -400px; transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05); }
+            100% { left: 110%; transform: scale(1) rotate(0deg); }
+        }
+
+        /* PETITS PÈRES NOËL VOLANTS */
+        .santa-small {
+            position: fixed;
+            width: 80px;
+            z-index: 1400;
+            animation: santaSmallFly 12s linear infinite;
+        }
+
+        @keyframes santaSmallFly {
+            0% { transform: translateX(-100px) translateY(0); }
+            50% { transform: translateX(60vw) translateY(-40px) rotate(10deg); }
+            100% { transform: translateX(110vw) translateY(0); }
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Légère animation de neige -->
+    <!-- ANIMATION : GRAND SANTA -->
+    <img src="images/santa_big.png" class="santa-big" alt="Père Noël sur traîneau">
+
+    <!-- PETITS PÈRES NOËL -->
+    <img src="images/santa_small.png" class="santa-small" style="top: 10%; animation-delay: 0s;">
+    <img src="images/santa_small.png" class="santa-small" style="top: 30%; animation-delay: 3s;">
+    <img src="images/santa_small.png" class="santa-small" style="top: 60%; animation-delay: 5s;">
+    <img src="images/santa_small.png" class="santa-small" style="top: 75%; animation-delay: 7s;">
+
+    <!-- NEIGE -->
     <canvas class="snow" id="snowCanvas"></canvas>
 
     <div class="container text-center">
@@ -81,7 +122,6 @@
             <h2>Chloé</h2>
 
             <div class="row justify-content-center">
-                <!-- Cadeau 1 -->
                 <div class="col-md-4">
                     <div class="gift-card card">
                         <img src="images/cadeau_chloe_1.jpg" alt="Cadeau Chloé 1">
@@ -92,7 +132,6 @@
                     </div>
                 </div>
 
-                <!-- Cadeau 2 -->
                 <div class="col-md-4">
                     <div class="gift-card card">
                         <img src="images/cadeau_chloe_2.jpg" alt="Cadeau Chloé 2">
@@ -111,7 +150,6 @@
             <h2>Marie</h2>
 
             <div class="row justify-content-center">
-                <!-- Cadeau 1 -->
                 <div class="col-md-4">
                     <div class="gift-card card">
                         <img src="images/cadeau_marie_1.jpg" alt="Cadeau Marie 1">
@@ -122,7 +160,6 @@
                     </div>
                 </div>
 
-                <!-- Cadeau 2 -->
                 <div class="col-md-4">
                     <div class="gift-card card">
                         <img src="images/cadeau_marie_2.jpg" alt="Cadeau Marie 2">
@@ -141,7 +178,7 @@
         </footer>
     </div>
 
-    <!-- Petite animation de neige en JS -->
+    <!-- Neige en JS -->
     <script>
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
