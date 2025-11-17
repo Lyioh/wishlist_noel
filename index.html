@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Wishlist de Noël</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Police festive -->
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
         body {
@@ -16,21 +20,37 @@
             overflow-x: hidden;
         }
 
-        h1 {
-            font-size: 3rem;
-            color: #fff;
+        /* ---- TITRE & SECTIONS FESTIFS ---- */
+        h1, .wishlist-section h2 {
+            font-family: "Mountains of Christmas", cursive;
             text-shadow: 2px 2px 5px #000;
+            color: #fff;
+        }
+
+        h1 {
             margin-top: 30px;
             margin-bottom: 40px;
+            font-size: 4rem;
         }
 
         .wishlist-section h2 {
-            color: #fff;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px #000;
+            font-size: 2.8rem;
+            margin-top: 40px;
         }
 
+        /* ---- SÉPARATEUR ---- */
+        .separator {
+            margin: 50px auto;
+            text-align: center;
+        }
+
+        .separator span {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        /* ---- GIFT CARDS ---- */
         .gift-card {
             border-radius: 12px;
             overflow: hidden;
@@ -39,11 +59,9 @@
             background-color: #fff;
             transition: transform .2s;
         }
-
         .gift-card:hover {
             transform: scale(1.03);
         }
-
         .gift-card img {
             width: 100%;
             height: 220px;
@@ -57,7 +75,7 @@
             opacity: 0.8;
         }
 
-        /* Canvas neige */
+        /* ---- NEIGE ---- */
         .snow {
             position: fixed;
             top: 0;
@@ -68,14 +86,14 @@
             z-index: 2000;
         }
 
-                /* PETITS PÈRES NOËL VOLANTS */
+        /* ---- PETITS PÈRES NOËL (TAILLE X2 + DIAGONALE 45°) ---- */
         .santa-small {
             position: fixed;
-            width: 160px;
+            width: 160px; /* Double taille 🎅 */
             z-index: 1400;
-            animation: santaSmallDiagonal 10s linear infinite;
+            animation: santaSmallDiagonal 12s linear infinite;
         }
-        
+
         @keyframes santaSmallDiagonal {
             0% {
                 transform: translateX(-100px) translateY(100px);
@@ -87,35 +105,33 @@
                 transform: translateX(110vw) translateY(-50vh);
             }
         }
-
     </style>
 </head>
 
 <body>
 
-    <!-- ANIMATION : GRAND SANTA -->
-    <img src="images/santa_big.png" class="santa-big" alt="Père Noël sur traîneau">
+    <!-- ---- PETITS PÈRES NOËL ---- -->
+    <img src="images/santa_small.png" class="santa-small" style="top: 80%; animation-delay: 0s;">
+    <img src="images/santa_small.png" class="santa-small" style="top: 70%; animation-delay: 3s;">
+    <img src="images/santa_small.png" class="santa-small" style="top: 60%; animation-delay: 5s;">
+    <img src="images/santa_small.png" class="santa-small" style="top: 85%; animation-delay: 7s;">
 
-    <!-- PETITS PÈRES NOËL -->
-    <img src="images/santa_small.webp" class="santa-small" style="top: 10%; animation-delay: 0s;">
-    <img src="images/santa_small.webp" class="santa-small" style="top: 30%; animation-delay: 3s;">
-    <img src="images/santa_small.webp" class="santa-small" style="top: 60%; animation-delay: 5s;">
-    <img src="images/santa_small.webp" class="santa-small" style="top: 75%; animation-delay: 7s;">
-
-    <!-- NEIGE -->
+    <!-- Neige -->
     <canvas class="snow" id="snowCanvas"></canvas>
 
     <div class="container text-center">
+
         <h1>🎄 Wishlist de Noël 🎁</h1>
 
-        <!-- SECTION CHLOÉ -->
+        <!-- ---- SECTION CHLOÉ ---- -->
         <div class="wishlist-section">
             <h2>Chloé</h2>
 
             <div class="row justify-content-center">
+
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/cadeau_chloe_1.jpg" alt="Cadeau Chloé 1">
+                        <img src="images/cadeau_chloe_1.jpg" alt="Cadeau 1">
                         <div class="card-body">
                             <h5 class="card-title">Nom du cadeau</h5>
                             <p class="card-text"><strong>Prix :</strong> 25€</p>
@@ -125,7 +141,7 @@
 
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/cadeau_chloe_2.jpg" alt="Cadeau Chloé 2">
+                        <img src="images/cadeau_chloe_2.jpg" alt="Cadeau 2">
                         <div class="card-body">
                             <h5 class="card-title">Nom du cadeau</h5>
                             <p class="card-text"><strong>Prix :</strong> 40€</p>
@@ -136,14 +152,20 @@
             </div>
         </div>
 
-        <!-- SECTION MARIE -->
+        <!-- ---- SÉPARATEUR ---- -->
+        <div class="separator">
+            <span>❄️ ✨ ❄️</span>
+        </div>
+
+        <!-- ---- SECTION MARIE ---- -->
         <div class="wishlist-section">
             <h2>Marie</h2>
 
             <div class="row justify-content-center">
+
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/cadeau_marie_1.jpg" alt="Cadeau Marie 1">
+                        <img src="images/cadeau_marie_1.jpg" alt="Cadeau 1">
                         <div class="card-body">
                             <h5 class="card-title">Nom du cadeau</h5>
                             <p class="card-text"><strong>Prix :</strong> 30€</p>
@@ -153,7 +175,7 @@
 
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/cadeau_marie_2.jpg" alt="Cadeau Marie 2">
+                        <img src="images/cadeau_marie_2.jpg" alt="Cadeau 2">
                         <div class="card-body">
                             <h5 class="card-title">Nom du cadeau</h5>
                             <p class="card-text"><strong>Prix :</strong> 55€</p>
@@ -169,7 +191,7 @@
         </footer>
     </div>
 
-    <!-- Neige en JS -->
+    <!-- ---- NEIGE EN JAVASCRIPT ---- -->
     <script>
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
