@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wishlist de Noël</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(#b30000, #4d0000);
+            font-family: "Segoe UI", sans-serif;
+            padding-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 5px #000;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        .wishlist-section h2 {
+            color: #fff;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px #000;
+        }
+
+        .gift-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            margin-bottom: 30px;
+            background-color: #fff;
+            transition: transform .2s;
+        }
+
+        .gift-card:hover {
+            transform: scale(1.03);
+        }
+
+        .gift-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        footer {
+            color: #fff;
+            text-align: center;
+            margin-top: 60px;
+            opacity: 0.8;
+        }
+
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Légère animation de neige -->
+    <canvas class="snow" id="snowCanvas"></canvas>
+
+    <div class="container text-center">
+        <h1>🎄 Wishlist de Noël 🎁</h1>
+
+        <!-- SECTION CHLOÉ -->
+        <div class="wishlist-section">
+            <h2>Chloé</h2>
+
+            <div class="row justify-content-center">
+                <!-- Cadeau 1 -->
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/cadeau_chloe_1.jpg" alt="Cadeau Chloé 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du cadeau</h5>
+                            <p class="card-text"><strong>Prix :</strong> 25€</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cadeau 2 -->
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/cadeau_chloe_2.jpg" alt="Cadeau Chloé 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du cadeau</h5>
+                            <p class="card-text"><strong>Prix :</strong> 40€</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION MARIE -->
+        <div class="wishlist-section">
+            <h2>Marie</h2>
+
+            <div class="row justify-content-center">
+                <!-- Cadeau 1 -->
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/cadeau_marie_1.jpg" alt="Cadeau Marie 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du cadeau</h5>
+                            <p class="card-text"><strong>Prix :</strong> 30€</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cadeau 2 -->
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/cadeau_marie_2.jpg" alt="Cadeau Marie 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Nom du cadeau</h5>
+                            <p class="card-text"><strong>Prix :</strong> 55€</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>🎅 Joyeux Noël à toute la famille 🎄</p>
+        </footer>
+    </div>
+
+    <!-- Petite animation de neige en JS -->
+    <script>
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let snowflakes = [];
+
+        function initSnow() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+
+            snowflakes = [];
+            for (let i = 0; i < 100; i++) {
+                snowflakes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    r: Math.random() * 4 + 1,
+                    d: Math.random() + 1
+                });
+            }
+        }
+
+        function drawSnow() {
+            ctx.clearRect(0, 0, width, height);
+
+            ctx.fillStyle = "white";
+            ctx.beginPath();
+            for (let flake of snowflakes) {
+                ctx.moveTo(flake.x, flake.y);
+                ctx.arc(flake.x, flake.y, flake.r, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+
+            updateSnow();
+        }
+
+        let angle = 0;
+        function updateSnow() {
+            angle += 0.01;
+
+            for (let flake of snowflakes) {
+                flake.y += Math.pow(flake.d, 2) + 1;
+                flake.x += Math.sin(angle) * 0.5;
+
+                if (flake.y > height) {
+                    flake.y = 0;
+                    flake.x = Math.random() * width;
+                }
+            }
+        }
+
+        setInterval(drawSnow, 33);
+        window.addEventListener('resize', initSnow);
+        initSnow();
+    </script>
+
+</body>
+</html>
