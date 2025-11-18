@@ -6,10 +6,8 @@
 
     <title>Wishlist de Noël</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Police festive -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&display=swap" rel="stylesheet">
@@ -29,47 +27,38 @@
             font-style: normal;
             text-shadow: 2px 2px 5px #000;
             color: #fff;
-            animation: twinkle_red 2s infinite ease-in-out; 
-            /* Ajout d'une petite ombre de texte pour un effet lumineux permanent */
-            text-shadow: 0 0 5px #ff4500, 0 0 10px #dc143c;
         }
 
         h1 {
             margin-top: 30px;
             margin-bottom: 40px;
             font-size: 4rem;
+            animation: twinkle_red 2s infinite ease-in-out; 
+            filter: drop-shadow(0 0 5px #ff4500) drop-shadow(0 0 10px #dc143c);
         }
 
         .wishlist-section h2 {
             font-size: 2.8rem;
-            margin-top: 30px;
+            margin-top: 20px;
             margin-bottom: 20px;
             animation: twinkle_yellow 2s infinite ease-in-out; 
-            /* Ajout d'une petite ombre de texte pour un effet lumineux permanent */
             text-shadow: 0 0 5px #ffd700, 0 0 10px #ff8800;
         }
 
         /* ---- TITRES FESTIFS (AJUSTEMENT DES TAILLES) ---- */
-        .christmas-title { /* Ciblage spécifique pour le h1 */
+        .christmas-title { 
             margin-top: 30px;
-            margin-bottom: 20px;
+            margin-bottom: -25px;
             font-size: 5rem; 
-            /* S'assurer que le texte et les images sont alignés */
             display: flex;
-            align-items: center; /* Aligne verticalement au centre */
-            justify-content: center; /* Centre le contenu (texte + images) */
-            gap: 20px; /* Espace entre les images et le texte */
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
         }
 
         .christmas-title .title-decoration {
-            height: 80px; /* Ajustez cette hauteur pour contrôler la taille de la couronne */
-            width: auto; /* Maintient les proportions de l'image */
-            
-            /* Optionnel : Si vous voulez que la couronne scintille aussi */
-            /* animation: twinkle-subtle 3s infinite ease-in-out; */ 
-            
-            /* Pour un effet lumineux subtil sur la couronne */
-            filter: drop-shadow(0 0 5px #ffcc00); 
+            height: 80px;
+            width: auto;
         }
 
         /* ---- SÉPARATEUR ---- */
@@ -86,23 +75,95 @@
 
         /* ---- GIFT CARDS ---- */
         .gift-card {
+            position: relative;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
             background-color: #fff;
             transition: transform .2s;
+            border: 5px solid #017001cb; 
         }
         
         .gift-card:hover {
             transform: scale(1.03);
         }
 
-        .gift-card img {
+        /* Style pour l'image du produit à l'intérieur de la carte */
+        .gift-card > img:not(.corner-decoration) { 
             width: 100%;
             height: 220px;
             object-fit: contain;
-            /* Optionnel : pour des images qui ont des couleurs transparentes, un fond blanc peut aider */
             background-color: #fff; 
+            position: relative; /* Pour le z-index */
+            margin-top: 10px;
+            z-index: 2; /* Au-dessus des décorations */
+        }
+
+        /* Style pour le corps de la carte (texte) */
+        .gift-card .card-body {
+            position: relative; /* Pour le z-index */
+            z-index: 2; /* Au-dessus des décorations */
+        }
+
+        /* ---- STYLE DU TEXTE À L'INTÉRIEUR DES CARTES CADEAUX ---- */
+        .gift-card h5.card-title,
+        .gift-card p.card-text {
+            font-family: "Berkshire Swash", serif; /* Police festive */
+            text-shadow: none; /* Supprimer les ombres du texte des titres */
+        }
+
+        .gift-card h5.card-title {
+            font-size: 1.8rem; /* Rendre le titre du cadeau un peu plus grand */
+            margin-bottom: 5px;
+            color: #dc143c; /* **ROUGE VIF** pour contraster avec le fond blanc */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            /* **CORRECTION CLÉ : Forcer une hauteur minimale pour au moins deux lignes** */
+            min-height: auto; /*3rem;  Ajustez cette valeur. Environ 1.5rem par ligne. 3rem donne de l'espace pour deux lignes. */
+            line-height: 1.5rem; /* Définit la hauteur de chaque ligne */
+        }
+
+        .row {
+            /* Marge ajoutée pour séparer les rangées de cartes verticalement */
+            margin-bottom: 30px; /* Vous pouvez ajuster cette valeur (ex: 20px, 40px) */
+        }
+
+        /* 2. LE MOT "Prix" */
+        .gift-card .price-label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #006400; /* Vert Sapin */
+        }
+
+        /* 3. LA VALEUR DU PRIX (ex: 50 à 70€) */
+        .gift-card .price-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #dc143c; /* Rouge Noël */
+            margin-left: 5px; /* Petit espace pour séparer du mot "Prix :" */
+        }
+
+        /* ---- DÉCORATIONS DE COIN POUR LES CARTES CADEAUX ---- */
+        .corner-decoration {
+            position: absolute;
+            width: 100px; /* Ajustez cette largeur pour votre guirlande diagonale */
+            height: auto;
+            z-index: 11; /* Pour être en dessous du contenu principal de la carte */
+        }
+
+        /* Pour le coin supérieur gauche */
+        .corner-top-left {
+            top: -18px; 
+            left:-18px;
+            /*transform: rotate(90deg);  Ajustez la rotation selon l'orientation de votre image source */
+            transform-origin: top left; /* Point de pivot pour la rotation */
+        }
+
+        /* Pour le coin inférieur droit */
+        .corner-bottom-right {
+            bottom: -58px; 
+            right: -8px;
+           /* transform: rotate(-90deg); Ajustez la rotation selon l'orientation de votre image source */
+            transform-origin: bottom right; /* Point de pivot pour la rotation */
         }
 
         footer {
@@ -129,12 +190,42 @@
             width: 160px;
             z-index: 1400;
             animation: santaSmallDiagonal 12s linear infinite;
-            top: 0; /* obligatoire pour éviter les déplacements relatifs */
+            top: 0; 
             left: 0;
             pointer-events: none;
         }
 
-        
+        /* ---- CONTENEUR DES GUIRLANDES HORIZONTALES ---- */
+        .horizontal-garland-container {
+            display: flex; /* Aligne les images côte à côte */
+            justify-content: center; /* Centre le groupe des 3 guirlandes */
+            align-items: center; /* Centre verticalement les images si elles ont des hauteurs différentes */
+            width: 100%; /* Le conteneur prend toute la largeur disponible */
+            margin: 20px auto -20px auto; /* 20px en haut, auto à droite/gauche, et 40px en bas */
+            /* background-color: blue; /* Pour déboguer l'espace si besoin */
+        }
+
+        /* ---- SEGMENTS INDIVIDUELS DE GUIRLANDE ---- */
+        .garland-segment {
+            /* Largeur de chaque segment :
+            Si votre image est petite et conçue pour être répétée, donnez-lui sa largeur naturelle.
+            Par exemple, si une image de guirlande fait 100px de large et vous voulez en mettre 3.
+            Total = 300px.
+            */
+            width: auto; /* Laisse l'image prendre sa largeur naturelle */
+            height: 90px; /* **Ajustez cette hauteur** pour qu'elle corresponde à la hauteur de votre image réelle */
+            object-fit: contain; /* S'assure que l'image ne se déforme pas */
+            display: block; /* Supprime les petits espaces blancs qui peuvent apparaître entre les images inline */
+
+            animation: twinkle_image_yellow 3s infinite ease-in-out; 
+            filter: drop-shadow(0 0 2px #ffd700); /* Ajoute une lueur initiale */
+        }
+
+        .garland-segment:not(:first-child) {
+            /* Applique une marge négative à TOUS les segments SAUF le premier.
+            Ajustez la valeur (ici -5px) selon le chevauchement désiré. */
+            margin-left: -21px; 
+        }
         @keyframes santaSmallDiagonal {
             0% {
                 transform: translateX(-150px) translateY(100vh) rotate(-10deg);
@@ -149,82 +240,204 @@
 
         @keyframes twinkle_yellow {
             0%, 100% { 
-                text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900; /* Lueur jaune-or discrète */
+                text-shadow: 0 0 5px #ffcc00, 0 0 10px #ff9900;
             }
             50% { 
-                text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff6600, 0 0 30px #ff3300; /* Lueur maximale (plus large et un peu rouge) */
+                text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff6600, 0 0 30px #ff3300;
             }
         }
 
-        @keyframes twinkle_red {
-            0% { 
-                filter: drop-shadow(0 0 4px #ff4500) drop-shadow(0 0 8px #dc143c); /* Rouge-orangé doux */
+        @keyframes twinkle_image_yellow { 
+            0%, 100% { 
+                /* Lueur de base, plus subtile au début et à la fin */
+                filter: drop-shadow(0 0 3px #fff0b3) drop-shadow(0 0 6px #ffeb3b);
             }
             50% { 
-                filter: drop-shadow(0 0 16px #ff0000) drop-shadow(0 0 22px #8b0000); /* Rouge intense et profond */
+                /* Lueur intense au milieu de l'animation pour l'effet "scintillement" */
+                filter: drop-shadow(0 0 10px #ffea00) drop-shadow(0 0 20px #ffc107) drop-shadow(0 0 30px #ff9800);
+            }
+        }
+        @keyframes twinkle_red { 
+            0% { 
+                filter: drop-shadow(0 0 4px #ff4500) drop-shadow(0 0 8px #dc143c);
+            }
+            50% { 
+                filter: drop-shadow(0 0 16px #ff0000) drop-shadow(0 0 22px #8b0000);
             }
             100% { 
-                filter: drop-shadow(0 0 4px #ff4500) drop-shadow(0 0 8px #dc143c); /* Retour au rouge-orangé doux */
+                filter: drop-shadow(0 0 4px #ff4500) drop-shadow(0 0 8px #dc143c);
             }
         }
 
     </style>
 </head>
 
+<script>
+    function adjustTitleSize() {
+        // Sélectionnez tous les titres de carte
+        const titles = document.querySelectorAll('.gift-card h5.card-title');
+        
+        // Définir la taille de la police de départ et la hauteur de ligne cible (en pixels)
+        const baseFontSizeRem = 1.7; // Doit correspondre à la taille de base dans votre CSS
+        const baseLineHeightRem = 1.5; // Doit correspondre à la line-height dans votre CSS
+
+        // Convertir les REM en pixels (le script a besoin de valeurs en pixels)
+        // Obtient la taille de police de base de la racine (<html>)
+        const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        const twoLineHeightLimit = baseLineHeightRem * rootFontSize * 2; // Hauteur cible pour 2 lignes
+
+        titles.forEach(title => {
+            // Réinitialiser la taille pour chaque titre avant de commencer la vérification
+            title.style.fontSize = baseFontSizeRem + 'rem';
+            
+            // Boucle de réduction : continue tant que le texte prend plus que 2 lignes de hauteur
+            let currentSizeRem = baseFontSizeRem;
+            
+            // La boucle se termine lorsque la hauteur réelle est égale ou inférieure à la hauteur cible de 2 lignes.
+            while (title.offsetHeight > twoLineHeightLimit && currentSizeRem > 0.5) {
+                // Réduire la taille de 0.05rem à chaque itération
+                currentSizeRem -= 0.05; 
+                title.style.fontSize = currentSizeRem.toFixed(2) + 'rem';
+            }
+            
+            // Pour garantir l'alignement, forcez la hauteur minimale à 2 lignes (min-height) 
+            // UNIQUEMENT après le redimensionnement si le titre tenait sur une seule ligne.
+            if (title.offsetHeight < twoLineHeightLimit) {
+                title.style.minHeight = twoLineHeightLimit + 'px';
+            }
+        });
+    }
+
+    // Exécuter la fonction au chargement de la page pour une première passe
+    window.addEventListener('load', adjustTitleSize);
+    
+    // Exécuter la fonction lors du redimensionnement de l'écran (pour la réactivité)
+    window.addEventListener('resize', adjustTitleSize);
+</script>
+
 <body>
 
-    <!-- ---- PETITS PÈRES NOËL ---- -->
-    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 0s;">
-    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 3s;">
-    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 5s;">
-    <img src="images/santa_small.webp" class="santa-small" style="animation-delay: 7s;">
+    <img src="images/deco/santa_small.webp" class="santa-small" style="animation-delay: 0s;">
+    <img src="images/deco/santa_small.webp" class="santa-small" style="animation-delay: 3s;">
+    <img src="images/deco/santa_small.webp" class="santa-small" style="animation-delay: 5s;">
+    <img src="images/deco/santa_small.webp" class="santa-small" style="animation-delay: 7s;">
 
-    <!-- Neige -->
     <canvas class="snow" id="snowCanvas"></canvas>
 
     <div class="container text-center">
 
         <h1 class="christmas-title text-center">
-            <img src="images/courrone_noel.png" alt="Couronne de Noël" class="title-decoration">
+            <img src="images/deco/courrone_noel.png" alt="Couronne de Noël" class="title-decoration">
             <span>Listes de Noël</span>
-            <img src="images/courrone_noel.png" alt="Couronne de Noël" class="title-decoration">
+            <img src="images/deco/courrone_noel.png" alt="Couronne de Noël" class="title-decoration">
         </h1>
 
-        <!-- ---- SECTION CHLOÉ ---- -->
-        <div class="wishlist-section">
-            <h2>Chloé</h2>
-
-            <div class="row justify-content-center">
-
-                <div class="col-md-4">
-                    <div class="gift-card card">
-                        <img src="images/barbie_bateau.webp" alt="Cadeau 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Bateau barbie</h5>
-                            <p class="card-text"><strong>Prix :</strong> 50 à 70€</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="gift-card card">
-                        <img src="images/Scruff.webp" alt="Cadeau 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Scruff a Luvs</h5>
-                            <p class="card-text"><strong>Prix :</strong> 25€</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="horizontal-garland-container">
+            <img src="images/deco/guirlande_horiz.png" class="garland-segment" alt="Guirlande décorative">
+            <img src="images/deco/guirlande_horiz.png" class="garland-segment" alt="Guirlande décorative">
+            <img src="images/deco/guirlande_horiz.png" class="garland-segment" alt="Guirlande décorative">
         </div>
 
-        <!-- ---- SÉPARATEUR ---- 
-        <div class="separator-garland">
-            <img src="images/guirlande.png" alt="Guirlande lumineuse" class="garland-img">
-        </div>-->
+        <div class="wishlist-section">
+            <h2>Chloé</h2>
+        
+            <div class="row justify-content-center">
+        
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        <img src="images/cadeau/barbie_bateau.webp" alt="Cadeau 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Bateau barbie</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">50 à 70€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        <img src="images/cadeau/Scruff.webp" alt="Cadeau 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Scruff a Luvs</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">25€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        <img src="images/cadeau/rainbow_amaya.jpg" alt="Cadeau 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Rainbow High Amaya's Rainbow jeu d'armoires</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">25€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div> <div class="row justify-content-center">
+        
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        <img src="images/cadeau/rainbow_violet.jpg" alt="Cadeau 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Rainbow High Figurine Classic Fashion Doll Violet purple</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">25€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        <img src="images/cadeau/globe.jpg" alt="Cadeau 4">
+                        <div class="card-body">
+                            <h5 class="card-title">VTech Genius Xl - Globe Vidéo Interactif</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">25€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        <img src="images/cadeau/magic_bunny.jpg" alt="Cadeau 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Magic Bunnies chapeau magique</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">25€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div> 
+        </div>
 
-        <!-- ---- SECTION MARIE ---- -->
         <div class="wishlist-section">
             <h2>Marie</h2>
 
@@ -232,24 +445,121 @@
 
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/miraculous_phone.jpg" alt="Cadeau 1">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/miraculous_phone.jpg" alt="Cadeau 1">
                         <div class="card-body">
                             <h5 class="card-title">Téléphone Magique de Ladybug</h5>
-                            <p class="card-text"><strong>Prix :</strong> 15-20€</p>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">15-20€</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="gift-card card">
-                        <img src="images/live_pet.jpg" alt="Cadeau 2">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/live_pet.jpg" alt="Cadeau 2">
                         <div class="card-body">
                             <h5 class="card-title">Little Live Pets Ouchies</h5>
-                            <p class="card-text"><strong>Prix :</strong> 60€</p>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">60€</span>
+                            </p>
                         </div>
                     </div>
                 </div>
 
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/play_doh.jpg" alt="Cadeau 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Play Doh Rainbow swirl ice cream</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">15-20€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div> 
+            <div class="row justify-content-center">
+
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/gabby_maison.jpg" alt="Cadeau 4">
+                        <div class="card-body">
+                            <h5 class="card-title">Maison de poupées Gabby et la maison magique</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">15-20€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/barbie_gymnastique.jpg" alt="Cadeau 5">
+                        <div class="card-body">
+                            <h5 class="card-title">Barbie Gymnastics</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">15-20€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/lay_bug_tete.jpg" alt="Cadeau 6">
+                        <div class="card-body">
+                            <h5 class="card-title">Tête à coiffer Miraculous</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">15-20€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">    
+                <div class="col-md-4">
+                    <div class="gift-card card">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin supérieur gauche" class="corner-decoration corner-top-left">
+                        <img src="images/deco/guirlande_diagonale.png" alt="Décoration coin inférieur droit" class="corner-decoration corner-bottom-right">
+                        
+                        <img src="images/cadeau/phone_gabby.jpg" alt="Cadeau 6">
+                        <div class="card-body">
+                            <h5 class="card-title">VTech Gabby et la maison magique Smartphone</h5>
+                            <p class="card-text">
+                                <span class="price-label">Prix :</span>
+                                <span class="price-value">15-20€</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
 
@@ -258,7 +568,6 @@
         </footer>
     </div>
 
-    <!-- ---- NEIGE EN JAVASCRIPT ---- -->
     <script>
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
