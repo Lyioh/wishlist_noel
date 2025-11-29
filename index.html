@@ -314,6 +314,70 @@
     
     // Exécuter la fonction lors du redimensionnement de l'écran (pour la réactivité)
     window.addEventListener('resize', adjustTitleSize);
+
+
+    function adjustTitleSize() {
+        // --- 1. Ajustement des titres de Cartes Cadeaux (h5) ---
+        const titles = document.querySelectorAll('.gift-card h5.card-title');
+        const baseFontSizeRem_h5 = 1.8; // La taille que vous avez dans le CSS pour les h5
+        const baseLineHeightRem_h5 = 1.5; // La hauteur de ligne que vous avez dans le CSS pour les h5
+        const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        const twoLineHeightLimit = baseLineHeightRem_h5 * rootFontSize * 2; // Hauteur cible pour 2 lignes
+
+        titles.forEach(title => {
+            title.style.fontSize = baseFontSizeRem_h5 + 'rem';
+            let currentSizeRem = baseFontSizeRem_h5;
+            
+            // Boucle de réduction : tant que le texte prend plus que 2 lignes
+            while (title.offsetHeight > twoLineHeightLimit && currentSizeRem > 0.5) {
+                currentSizeRem -= 0.05; 
+                title.style.fontSize = currentSizeRem.toFixed(2) + 'rem';
+            }
+            
+            // Garantir la hauteur minimale
+            if (title.offsetHeight < twoLineHeightLimit) {
+                title.style.minHeight = twoLineHeightLimit + 'px';
+            }
+        });
+
+        // --- 2. Ajustement du Titre Principal (h1 > span) ---
+        const mainTitleSpan = document.querySelector('h1.christmas-title span');
+        if (mainTitleSpan) {
+            // Définissez une taille maximale de police (selon votre CSS initial)
+            let maxFontSizeRem = 4.0; // Correspond à font-size: 4rem du h1 dans le CSS
+            mainTitleSpan.style.fontSize = maxFontSizeRem + 'rem';
+            
+            // Réinitialisez la taille de la balise h1 parente si nécessaire (au cas où la règle CSS initiale h1 {font-size: 4rem} ne s'applique pas directement)
+            const parentH1 = mainTitleSpan.parentElement;
+            parentH1.style.fontSize = 'initial';
+            
+            // Déterminer la largeur du conteneur (le H1) moins la largeur des décorations
+            const titleContainerWidth = parentH1.offsetWidth;
+            const decoImages = parentH1.querySelectorAll('.title-decoration');
+            let decoWidth = 0;
+            decoImages.forEach(img => {
+                decoWidth += img.offsetWidth + 20; // 20px de gap défini dans le CSS
+            });
+
+            // La largeur maximale disponible pour le texte du titre
+            const maxTextWidth = titleContainerWidth - decoWidth - 40; // Marge de sécurité
+
+            // Boucle de réduction : continue tant que le texte est plus large que l'espace disponible
+            let currentSizeRem = maxFontSizeRem;
+            // Utilisez scrollWidth pour obtenir la largeur réelle du contenu, y compris ce qui est masqué.
+            while (mainTitleSpan.scrollWidth > maxTextWidth && currentSizeRem > 1.0) {
+                currentSizeRem -= 0.1; // Réduire par incréments de 0.1rem
+                mainTitleSpan.style.fontSize = currentSizeRem.toFixed(2) + 'rem';
+            }
+        }
+    }
+
+    // Exécuter la fonction au chargement de la page pour une première passe
+    window.addEventListener('load', adjustTitleSize);
+    
+    // Exécuter la fonction lors du redimensionnement de l'écran (pour la réactivité)
+    window.addEventListener('resize', adjustTitleSize);
+
 </script>
 
 <body>
